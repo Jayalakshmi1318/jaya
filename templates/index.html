@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Credit Card Fraud Detector</title>
+    <style>
+        body { font-family: Arial; background: #f4f4f4; padding: 20px; }
+        .container { background: white; padding: 30px; border-radius: 10px; width: 400px; margin: auto; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        h2 { color: #333; text-align: center; }
+        input[type=text], input[type=number] {
+            width: 100%; padding: 10px; margin: 10px 0; border-radius: 5px; border: 1px solid #ccc;
+        }
+        input[type=submit] {
+            background: #007BFF; color: white; padding: 10px; border: none; border-radius: 5px;
+            cursor: pointer; width: 100%;
+        }
+        .result { margin-top: 20px; font-weight: bold; text-align: center; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Credit Card Fraud Detection</h2>
+        <form action="/predict" method="post">
+            <label>Transaction ID:</label>
+            <input type="text" name="transaction_id" required>
+            <label>Card Number:</label>
+            <input type="text" name="card_number" required>
+            <label>Amount:</label>
+            <input type="number" name="amount" step="0.01" required>
+            <input type="submit" value="Check Fraud">
+        </form>
+        {% if result %}
+        <div class="result">{{ result|safe }}</div>
+        {% endif %}
+    </div>
+</body>
+</html>
